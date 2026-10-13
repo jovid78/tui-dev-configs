@@ -1,0 +1,34 @@
+theme = "bluloco_dark"
+
+[editor]
+bufferline = "multiple"   # tab bar, shown when 2+ files are open
+line-number = "relative"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "version-control"]
+right = ["diagnostics", "workspace-diagnostics", "selections", "register", "position", "total-line-numbers", "position-percentage", "file-encoding"]
+
+[keys.normal]
+"C-j" = "@5j"   # down 5 lines
+"C-k" = "@5k"   # up 5 lines
+"C-n" = "@miw*" # select word + search it: then n/N to navigate, v n to add matches
+"C-y" = [       # yazi file picker at the current file (falls back to cwd for unsaved buffers)
+  ':sh rm -f /tmp/hx-yazi-chooser',
+  ':insert-output f="%{buffer_name}"; [ -e "$f" ] || f=.; yazi "$f" --chooser-file=/tmp/hx-yazi-chooser',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/hx-yazi-chooser}',
+  ':redraw',
+  ':set mouse false',
+  ':set mouse true',
+]
+[keys.normal.space]
+q = ":write-quit-all"   # save everything and quit
+Q = ":quit-all!"        # quit without saving
+x = ":buffer-close"     # close current buffer (refuses if unsaved)
+X = ":buffer-close!"    # close current buffer, discarding changes
+i = ":toggle lsp.display-inlay-hints"
+n = ":toggle line-number absolute relative"
+l = ":pipe-to hx-ref %{buffer_name} %{selection_line_start} %{selection_line_end}"   # copy path:lines + selection for Claude Code
+
+[keys.select.space]
+l = ":pipe-to hx-ref %{buffer_name} %{selection_line_start} %{selection_line_end}"

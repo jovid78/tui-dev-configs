@@ -1,0 +1,23 @@
+#!/bin/sh
+# Copy a Helix selection to the clipboard as a reference for Claude Code:
+#
+#   /abs/path/to/file.ts:12-15
+#   ```
+#   <selected text>
+#   ```
+#
+# Usage (from Helix): :pipe-to hx-ref %{buffer_name} %{selection_line_start} %{selection_line_end}
+# The selection arrives on stdin.
+
+file=$1 start=$2 end=$3
+
+case $file in
+  "~"/*) file="$HOME/${file#"~/"}" ;;
+esac
+dir=$(cd "$(dirname "$file")" 2>/dev/null && pwd -P) && file="$dir/$(basename "$file")"
+
+if [ "$start" = "$end" ]; then lines=$start; else lines="$start-$end"; fi
+
+text=$(cat)   # $(...) drops the trailing newline that line selections (x) include
+
+printf '%s:%s\n```\n%s\n```\n' "$file" "$lines" "$text" | pbcopy

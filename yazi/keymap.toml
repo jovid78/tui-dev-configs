@@ -1,0 +1,16 @@
+[[mgr.prepend_keymap]]
+on   = "<S-Down>"
+run  = "arrow 3"
+desc = "Move down 3"
+
+[[mgr.prepend_keymap]]
+on   = "<S-Up>"
+run  = "arrow -3"
+desc = "Move up 3"
+
+# Open Helix as an "IDE" on the project containing the hovered item:
+# cd to its git root (or the folder itself if not in git), then `hx .`
+[[mgr.prepend_keymap]]
+on   = "E"
+run  = '''shell --block 'd="$0"; [ -d "$d" ] || d=$(dirname "$d"); cd "$d" && cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" && hx .' '''
+desc = "Open project in Helix"

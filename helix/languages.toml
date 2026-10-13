@@ -1,0 +1,52 @@
+# Prettier formats on save, resolved per project via npx.
+# Effect diagnostics come from @effect/language-service as a tsconfig plugin, loaded by typescript-language-server.
+
+[[language]]
+name = "typescript"
+formatter = { command = "npx", args = ["prettier", "--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+formatter = { command = "npx", args = ["prettier", "--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+formatter = { command = "npx", args = ["prettier", "--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+formatter = { command = "npx", args = ["prettier", "--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "json"
+formatter = { command = "npx", args = ["prettier", "--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "css"
+formatter = { command = "npx", args = ["prettier", "--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+[[language]]
+name = "html"
+formatter = { command = "npx", args = ["prettier", "--stdin-filepath", "%{buffer_name}"] }
+auto-format = true
+
+# Inlay hints (toggle with Space i). typescript-language-server sends none unless enabled here.
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayParameterNameHints = "all"
+includeInlayFunctionParameterTypeHints = true
+includeInlayVariableTypeHints = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayEnumMemberValueHints = true
+
+[language-server.typescript-language-server.config.javascript.inlayHints]
+includeInlayParameterNameHints = "all"
+includeInlayFunctionParameterTypeHints = true
+includeInlayVariableTypeHints = true
+includeInlayFunctionLikeReturnTypeHints = true

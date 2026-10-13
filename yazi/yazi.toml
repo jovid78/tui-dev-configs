@@ -1,0 +1,5 @@
+# Open text files in Helix (matches $EDITOR=hx)
+[opener]
+edit = [
+  { run = 'hx "$@"', block = true, desc = "Helix", for = "unix" },
+]
