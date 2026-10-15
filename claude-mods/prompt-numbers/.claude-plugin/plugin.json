@@ -1,0 +1,9 @@
+{
+  "name": "prompt-numbers",
+  "version": "0.3.0",
+  "description": "Numbered colour sections above each prompt (P1), Claude's working part (T1) and its final answer (A1).",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "Jose Vidal"
+  }
+}

@@ -27,6 +27,10 @@ put helix/themes/bluloco_dark.toml  "$HOME/.config/helix/themes/bluloco_dark.tom
 put helix/themes/bluloco_light.toml "$HOME/.config/helix/themes/bluloco_light.toml"
 put bin/hx-ref             "$HOME/.local/bin/hx-ref"
 chmod +x "$HOME/.local/bin/hx-ref"
+for f in .claude-plugin/plugin.json hooks/hooks.json hooks/register.tsx hooks/prompt-numbers.test.tsx types/index.d.ts tsconfig.json; do
+  put "claude-mods/prompt-numbers/$f" "$HOME/.claude/mods/prompt-numbers/$f"
+done
 
 echo
-echo "Done. Manual: add  export EDITOR='hx'  to ~/.zshrc and ensure ~/.local/bin is on PATH."
+echo "Done. Manual: add  export EDITOR='hx'  to ~/.zshrc and ensure ~/.local/bin is on PATH,"
+echo "and add CLAUDE_CODE_PLUGIN_DIRS to ~/.claude/settings.json (see README)."
